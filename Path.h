@@ -1,4 +1,4 @@
-/* Path.h
+/* Path.h is the header of the class representing the directories a shell searches
  * 
  * Authors:  Ian Christensen
  *					 Nate Gamble

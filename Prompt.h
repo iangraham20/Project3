@@ -1,4 +1,4 @@
-/* Prompt.h
+/* Prompt.h is the header for the class representing the command-line prompt
  * 
  * Authors:  Ian Christensen
  *					 Nate Gamble

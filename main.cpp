@@ -1,4 +1,4 @@
-/* main.cpp
+/* main.cpp is the primary driver of the entire shell project
  * 
  * Authors:  Ian Christensen
  *					 Nate Gamble

@@ -1,4 +1,4 @@
-/* Path.cpp
+/* Path.cpp is the class representing the directories a shell searches
  * 
  * Authors:  Ian Christensen
  *					 Nate Gamble

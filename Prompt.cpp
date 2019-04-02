@@ -1,4 +1,4 @@
-/* Prompt.cpp
+/* Prompt.cpp is a class representing the command-line prompt
  * 
  * Authors:  Ian Christensen
  *					 Nate Gamble
