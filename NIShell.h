@@ -11,9 +11,11 @@
 #ifndef NISHELL_H
 #define NISHELL_H
 
-// #include "CommandLine.h"
+#include "CommandLine.h"
 #include "Path.h"
 #include "Prompt.h"
+#include <unistd.h>
+#include <errno.h>
 
 using namespace std;
 
@@ -22,7 +24,8 @@ class NIShell {
 		NIShell();
 		void run();
 	private:
-
+		Path myPath;
+		Prompt myPrompt;
 };
 
 #endif /* NISHELL_H */

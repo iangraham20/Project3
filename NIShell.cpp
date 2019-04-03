@@ -27,5 +27,14 @@ NIShell::NIShell() {
  * Returns:
  */
 void NIShell::run() {
-
+	while (true) {
+		cout << myPrompt.get() << flush;
+		CommandLine myCommandLine(cin);
+		int index = myPath.find(myCommandLine.getCommand());
+		string dir = myPath.getDirectory(index);
+		string filename = dir + "/" + myCommandLine.getCommand();
+		extern char** environ;
+		int sysCmd = execve(filename.c_str(), myCommandLine.getArgVector(), environ);
+		if (sysCmd == -1) {cout << errno << endl;}
+	}
 }

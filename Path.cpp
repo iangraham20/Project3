@@ -38,7 +38,7 @@ Path::~Path() {
 }
 
 /* Function: find locates the directory that contains program
- * Precondition: The program exists somewhere in one of the directoryectories
+ * Precondition: The program exists somewhere in one of the directory
  * Postcondition: Either the location was returned or -1 was
  * Parameters: program, a const string&; A reference to the program
  * Returns: index, an int; The index for the releventry path in myDirectories
@@ -58,7 +58,7 @@ int Path::find(const string& program) const {
 	return -1;
 }
 
-/* Function: Accessor method for directoryectories in myDirectories
+/* Function: Accessor method for directory in myDirectories
  * Precondition: The index is within the range of myDirectories
  * Postcondition: The correct directory path was returned
  * Parameters: i, an int; The index of the directory path being accessed
