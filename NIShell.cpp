@@ -37,13 +37,28 @@ void NIShell::run() {
 		pid_t pid = fork();
 		if (pid == 0) {
 			extern char** environ;
-			int sysCmd = execve(filename.c_str(), myCommandLine.getArgVector(), environ);
-			if (sysCmd == -1) { cout << errno << endl; }
-			exit(0);
+			cout << endl;
+
+			if (myCommandLine.getCommand() == "cd") {
+				chdir(myCommandLine.getArgVector(1));
+			} else if (myCommandLine.getCommand() == "pwd") {
+				char cwd[PATH_MAX];
+				if (getcwd(cwd, sizeof(cwd)) != NULL) {
+					cout << cwd << endl;
+				}
+			} else if (myCommandLine.getCommand() == "exit") {
+				exit(0);
+			} else {
+				int sysCmd = execve(filename.c_str(), myCommandLine.getArgVector(), environ);
+				if (sysCmd == -1) { cout << errno << endl; }
+			}
+		exit(0);
+
 		} else if (myCommandLine.noAmpersand()) {
 			int status;
-			waitpid(0, &status, WUNTRACED|WNOHANG);
+			while (waitpid(0, &status, WNOHANG) == 0) {
+				sched_yield();
+			}
 		} 
-
 	}
 }

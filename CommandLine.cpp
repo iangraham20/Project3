@@ -18,10 +18,11 @@
  */
 CommandLine::CommandLine(istream& in) {
 	ampersand = false;
-
-	// cout << "Waiting for input" << endl;
 	getline(in, myCommandLine);
-	// cout << "The command line is: " << myCommandLine << endl;
+	if (myCommandLine == "") {
+		emptyStr = true;
+		return;
+	}
 	istringstream iss(myCommandLine);
 	vector<string> tempArgv;
 	for (string s; iss >> s; ) {
@@ -29,10 +30,13 @@ CommandLine::CommandLine(istream& in) {
 		myArgc += 1;
 	}
 
+	setmyArgv(tempArgv);
+}
 
 	// Converts input from a string into a StringStream
 	// Reads each character individually from SS
 	// Uses calloc() to allocate appropriate amount of space
+void CommandLine::setmyArgv(vector<string> tempArgv) {
 	istringstream iss2(myCommandLine);
 	char* argv[255];
 	bool breakout = false;
@@ -59,11 +63,8 @@ CommandLine::CommandLine(istream& in) {
 			}
 		}
 		argv[i] = temp;
-		// cout << argv[i] << endl;
 		if (breakout) { break; }
 	}
-
 	argv[myArgc] = NULL;
-
 	myArgv = (char**) argv;
 }

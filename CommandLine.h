@@ -28,12 +28,15 @@ public:
 	char** getArgVector() const { return myArgv; }
 	char* getArgVector(int i) const { return myArgv[i]; }
 	bool noAmpersand() const { return !ampersand; }
+	bool getEmptyStr() const { return emptyStr; }
+	void setmyArgv(vector<string>);
 
 private:
 	string myCommandLine;
 	int myArgc = 0;
 	char** myArgv;
 	bool ampersand;
+	bool emptyStr = false;
 };
 
 #endif /* COMMANDLINE_H_ */

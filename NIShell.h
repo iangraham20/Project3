@@ -18,6 +18,7 @@
 #include <errno.h>
 #include <sys/wait.h>
 #include <sys/types.h>
+#include <sched.h>
 
 using namespace std;
 
