@@ -47,6 +47,7 @@ int Path::find(const string& program) const {
 	DIR *directory;
 	struct dirent *entry;
 	for (int i = 0; i < myDirectories.size(); i++) {
+		// check if directory exists?
 		directory = opendir(myDirectories[i].c_str());
 		while ((entry = readdir(directory)) != NULL) {
 			if (entry->d_type == DT_REG) {

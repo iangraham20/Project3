@@ -16,6 +16,8 @@
 #include "Prompt.h"
 #include <unistd.h>
 #include <errno.h>
+#include <sys/wait.h>
+#include <sys/types.h>
 
 using namespace std;
 
