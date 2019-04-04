@@ -1,7 +1,6 @@
 /* CommandLine.cpp
  * 
  * Authors:  Nate Gamble
- *					 Ian Christensen
  * Date:    April 4, Spring Semester 2019
  * Class:   CS-232-A, Operating Systems
  *          with Joel Adams at Calvin College
@@ -29,13 +28,13 @@ CommandLine::CommandLine(istream& in) {
 		tempArgv.push_back(s);
 		myArgc += 1;
 	}
-
 	setmyArgv(tempArgv);
 }
 
-	// Converts input from a string into a StringStream
-	// Reads each character individually from SS
-	// Uses calloc() to allocate appropriate amount of space
+/* Converts input from a string into a StringStream
+ * Reads each character individually from SS
+ * Uses calloc() to allocate appropriate amount of space
+ */
 void CommandLine::setmyArgv(vector<string> tempArgv) {
 	istringstream iss2(myCommandLine);
 	char* argv[255];

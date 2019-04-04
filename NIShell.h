@@ -1,7 +1,7 @@
 /* NIShell.h
  * 
- * Authors:  Ian Christensen
- *					 Nate Gamble
+ * Authors: Nate Gamble
+ *					Ian Christensen
  * Date:    March 28, Spring Semester 2019
  * Class:   CS-232-A, Operating Systems
  *          with Joel Adams at Calvin College
@@ -20,6 +20,9 @@
 #include <sys/types.h>
 #include <sched.h>
 
+#include <stdio.h> 
+#include <stdlib.h> 
+
 using namespace std;
 
 class NIShell {
@@ -29,6 +32,7 @@ class NIShell {
 	private:
 		Path myPath;
 		Prompt myPrompt;
+		bool commands(string str, CommandLine myCommandLine); 
 };
 
 #endif /* NISHELL_H */

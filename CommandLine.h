@@ -1,7 +1,6 @@
 /* CommandLine.h
  * 
  * Authors:  Nate Gamble
- *					 Ian Christensen
  * Date:    April 4, Spring Semester 2019
  * Class:   CS-232-A, Operating Systems
  *          with Joel Adams at Calvin College

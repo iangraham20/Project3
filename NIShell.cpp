@@ -1,7 +1,7 @@
 /* NIShell.cpp
  * 
- * Authors:  Ian Christensen
- *					 Nate Gamble
+ * Authors: Nate Gamble
+ *					Ian Christensen
  * Date:    March 28, Spring Semester 2019
  * Class:   CS-232-A, Operating Systems
  *          with Joel Adams at Calvin College
@@ -28,37 +28,68 @@ NIShell::NIShell() {
  */
 void NIShell::run() {
 	while (true) {
-		cout << myPrompt.get() << flush;
+
+		cout << myPrompt.get() << "$" << flush;
 		CommandLine myCommandLine(cin);
-		int index = myPath.find(myCommandLine.getCommand());
-		string dir = myPath.getDirectory(index);
-		string filename = dir + "/" + myCommandLine.getCommand();
+		string filename;
+		if (myPath.find(myCommandLine.getCommand()) != -1) {
+			int index = myPath.find(myCommandLine.getCommand());
+			string dir = myPath.getDirectory(index);
+			filename = dir + "/" + myCommandLine.getCommand();
+		}
 
 		pid_t pid = fork();
+		string str(myCommandLine.getCommand());
 		if (pid == 0) {
 			extern char** environ;
-			cout << endl;
-
-			if (myCommandLine.getCommand() == "cd") {
+			if (str == "cd") {
 				chdir(myCommandLine.getArgVector(1));
-			} else if (myCommandLine.getCommand() == "pwd") {
+				Prompt newPrompt;
+				myPrompt = newPrompt;
+				continue;
+			} else if (str == "pwd") {
 				char cwd[PATH_MAX];
 				if (getcwd(cwd, sizeof(cwd)) != NULL) {
 					cout << cwd << endl;
 				}
-			} else if (myCommandLine.getCommand() == "exit") {
+				continue;
+			} else if (str == "exit") {
 				exit(0);
-			} else {
+			} 
+			// if (commands(str, myCommandLine)) {
+			// 	continue;
+			// } 
+			else {
 				int sysCmd = execve(filename.c_str(), myCommandLine.getArgVector(), environ);
 				if (sysCmd == -1) { cout << errno << endl; }
+				continue;
 			}
-		exit(0);
-
 		} else if (myCommandLine.noAmpersand()) {
 			int status;
 			while (waitpid(0, &status, WNOHANG) == 0) {
 				sched_yield();
 			}
-		} 
+			if (str == "exit") {
+				exit(0);
+			}
+		}
 	}
+}
+
+bool NIShell::commands(string str, CommandLine myCommandLine) {
+	if (str == "cd") {
+		chdir(myCommandLine.getArgVector(1));
+		Prompt newPrompt;
+		myPrompt = newPrompt;
+	} else if (str == "pwd") {
+		char cwd[PATH_MAX];
+		if (getcwd(cwd, sizeof(cwd)) != NULL) {
+			cout << cwd << endl;
+		}
+	} else if (str == "exit") {
+		exit(0);
+	} else {
+		return true;
+	}
+	return false;
 }

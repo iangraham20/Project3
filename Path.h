@@ -1,7 +1,6 @@
 /* Path.h is the header of the class representing the directories a shell searches
  * 
- * Authors:  Ian Christensen
- *					 Nate Gamble
+ * Author:  Ian Christensen
  * Date:    March 28, Spring Semester 2019
  * Class:   CS-232-A, Operating Systems
  *          with Joel Adams at Calvin College

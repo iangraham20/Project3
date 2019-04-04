@@ -1,7 +1,6 @@
 /* Prompt.cpp is a class representing the command-line prompt
  * 
- * Authors:  Ian Christensen
- *					 Nate Gamble
+ * Author:  Ian Christensen
  * Date:    March 28, Spring Semester 2019
  * Class:   CS-232-A, Operating Systems
  *          with Joel Adams at Calvin College
@@ -17,20 +16,17 @@
  * Returns: A Prompt object
  */
 Prompt::Prompt() {
-	size = pathconf(".", _PC_PATH_MAX);
-	if ((buf = (char*)malloc((size_t)size)) != NULL)
-    ptr = getcwd(buf, (size_t)size);
-  strcat(buf, "$");
+	getcwd(myFullPath, FILENAME_MAX);
 }
 
 /* Function: Default Destructor Method
- * Precondition: The malloc command was used
- * Postcondition: All memory has been reclaimed
+ * Precondition:
+ * Postcondition:
  * Parameters: none
  * Returns: none
- */
+ */ 
 Prompt::~Prompt() {
-	free(buf);
+
 }
 
 /* Function: Accessor Method for the buf attribute
@@ -40,5 +36,5 @@ Prompt::~Prompt() {
  * Returns: buf, the buffer value
  */
 string Prompt::get() const {
-	return buf;
+	return string(myFullPath);
 }

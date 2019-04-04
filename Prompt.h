@@ -1,7 +1,6 @@
 /* Prompt.h is the header for the class representing the command-line prompt
  * 
- * Authors:  Ian Christensen
- *					 Nate Gamble
+ * Author:  Ian Christensen
  * Date:    March 28, Spring Semester 2019
  * Class:   CS-232-A, Operating Systems
  *          with Joel Adams at Calvin College
@@ -24,9 +23,7 @@ class Prompt {
 		~Prompt();
 		string get() const;
 	private:
-		long size;
-		char* buf;
-		char* ptr;
+		char myFullPath[FILENAME_MAX];
 };
 
 #endif /* PROMPT_H */

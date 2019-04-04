@@ -1,7 +1,6 @@
 /* Path.cpp is the class representing the directories a shell searches
  * 
- * Authors:  Ian Christensen
- *					 Nate Gamble
+ * Author:  Ian Christensen
  * Date:    March 28, Spring Semester 2019
  * Class:   CS-232-A, Operating Systems
  *          with Joel Adams at Calvin College
@@ -47,12 +46,13 @@ int Path::find(const string& program) const {
 	DIR *directory;
 	struct dirent *entry;
 	for (int i = 0; i < myDirectories.size(); i++) {
-		// check if directory exists?
 		directory = opendir(myDirectories[i].c_str());
-		while ((entry = readdir(directory)) != NULL) {
-			if (entry->d_type == DT_REG) {
-				if (entry->d_name == program)
-					return i;
+		if (directory) {
+			while ((entry = readdir(directory)) != NULL) {
+				if (entry->d_type == DT_REG) {
+					if (entry->d_name == program)
+						return i;
+				}
 			}
 		}
 	}
